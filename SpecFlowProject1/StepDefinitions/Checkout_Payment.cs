@@ -62,40 +62,23 @@ namespace SpecFlowProject1.StepDefinitions
             click_On_Login.Thenclickonloginpage();
         }
 
-        [Then(@"enter the invalid email id '([^']*)'")]
-
-        public void ThenEnterTheInvalidEmailId(string text)
-        {
 
 
-            invalidLogin = new InvalidLogin(driver);
-            invalidLogin.ThenEnterTheInvalidEmailId(text);
-
-        }
-
-        [Then(@"enter the invalid password '([^']*)'")]
-        public void ThenEnterTheInvalidPassword(string text)
-        {
-            invalidLogin = new InvalidLogin(driver);
-            invalidLogin.ThenEnterTheInvalidPassword(text);
-            
-        }
-
-
-
-        [Then(@"enter the email id '([^']*)'")]
-        public void ThenEnterTheEmailId(string text)
+        [When(@"Enter Credentials")]
+        public void WhenEnterCredentials(Table table)
         {
             login = new Login(driver);
-            login.ThenEnterTheEmailId(text);
 
+
+            login.EnterCredetial(table);
         }
 
-        [Then(@"enter the password '([^']*)'")]
-        public void ThenEnterThePassword(string text)
+        [Then(@"Successfull login")]
+        public void ThenSuccessfullLogin()
         {
             login = new Login(driver);
-            login.ThenEnterThePassword(text);
+
+            login.ClickLogin();
             
         }
 
@@ -122,8 +105,8 @@ namespace SpecFlowProject1.StepDefinitions
 
             addToCartcs.AddToCart2();
             addToCartcs.AddToCart3();
-           /* addToCartcs.AddToCart4(); */  
-            
+           /* addToCartcs.AddToCart4(); */
+
             check_Payment =new Check_Payment(driver);
             check_Payment.check_Payment1();
             driver.Quit();  

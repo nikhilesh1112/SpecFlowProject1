@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using EShopOnline.Utility;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SpecFlowProject1.Page;
 using System;
@@ -12,58 +13,42 @@ namespace SpecFlowProject1.Pages
 {
     public class Login
     {
-        private IWebDriver driver;
-        By login = By.XPath("//*[@id=\"Input_Email\"]");
-        By pass = By.XPath("//*[@id=\"Input_Password\"]");
-        By Click_login = By.XPath("/html/body/div/div/div/div/section/form/div[5]/button");
-        
-
+        IWebDriver driver;
         public Login(IWebDriver driver)
         {
             this.driver = driver;
         }
 
-       
+        By email = By.XPath(".//*[@id='Input_Email']");
+        By password = By.XPath(".//*[@id='Input_Password']");
+        By log = By.XPath(".//*[@class='btn btn-default']");
 
-        [Then(@"enter the invalid email id '([^']*)'")]
-        public void ThenEnterTheEmailId(string text)
+        public void EnterCredetial(Table table)
         {
-            driver.FindElement(login).SendKeys(text);
+            var dictionary = TableToDict.ToDict(table);
 
+            driver.FindElement(email).SendKeys(dictionary["username"]);
+            driver.FindElement(password).SendKeys(dictionary["password"]);
         }
 
-        [Then(@"enter the invalid password '([^']*)'")]
-        public void ThenEnterThePassword(string text)
-        {
-            driver.FindElement(pass).SendKeys(text);
-             driver.FindElement(Click_login).Click();
-
-            
-        }
         public Searching_items ClickLogin()
         {
-            driver.FindElement(Click_login).Click();
-
+            driver.FindElement(log).Click();
             string email = driver.FindElement(By.XPath("(//img[@class='esh-identity-image'])[1]/parent::section/div")).Text;
-
-            if (email != "LOGIN")
+            try
             {
-                Console.WriteLine("Valid Login");
+                if (email != "LOGIN")
+                {
+                    Console.WriteLine("Valid Login");
+                }
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
             return new Searching_items(driver);
         }
 
-
-
-
-
-
-
-
-
-
     }
-
-
 }
+

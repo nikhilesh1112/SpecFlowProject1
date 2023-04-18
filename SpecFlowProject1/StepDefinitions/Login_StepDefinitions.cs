@@ -20,38 +20,24 @@ namespace SpecFlowProject1.StepDefinitions
             this.driver = driver;
         }
 
-        [Then(@"enter the invalid email id '([^']*)'")]
-
-        public void ThenEnterTheInvalidEmailId(string SendKeys)
-        {
-
-            invalidLogin = new InvalidLogin(driver);
-            invalidLogin.ThenEnterTheInvalidEmailId(SendKeys);
-
-        }
-
-        [Then(@"enter the invalid password '([^']*)'")]
-        public void ThenEnterTheInvalidPassword(string SendKeys)
-        {
-            invalidLogin = new InvalidLogin(driver);
-            invalidLogin.ThenEnterTheInvalidPassword(SendKeys);
-            
-        }
-
-        [Then(@"enter the email id '([^']*)'")]
-        public void ThenEnterTheEmailId(string SendKeys2)
+        [Then(@"Click login")]
+        public void ThenClickLogin()
         {
             login = new Login(driver);
-            login.ThenEnterTheEmailId(SendKeys2);
-            
+
+            login.ClickLogin();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
-        [Then(@"enter the password '([^']*)'")]
-        public void ThenEnterThePassword(string SendKeys1)
+        [Then(@"Invalid login")]
+        public void ThenInvalidLogin()
         {
-            login = new Login(driver);
-            login.ThenEnterThePassword(SendKeys1);
-            driver.Quit();
+            invalidLogin = new InvalidLogin(driver);
+
+            invalidLogin.ClickLogin();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
+
     }
 }
+

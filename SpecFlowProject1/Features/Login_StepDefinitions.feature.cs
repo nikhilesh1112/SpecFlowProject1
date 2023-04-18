@@ -111,11 +111,20 @@ testRunner.Given("open the browser", ((string)(null)), ((TechTalk.SpecFlow.Table
 #line 9
  testRunner.Then("click on login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table2.AddRow(new string[] {
+                            "username",
+                            "admin123@microsoft.com"});
+                table2.AddRow(new string[] {
+                            "password",
+                            "Pass@word"});
 #line 10
- testRunner.Then("enter the invalid email id \'admin@microsoft.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("Enter Credentials", ((string)(null)), table2, "When ");
 #line hidden
-#line 11
- testRunner.And("enter the invalid password \'Pass@wor\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.Then("Invalid login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -130,7 +139,7 @@ testRunner.Given("open the browser", ((string)(null)), ((TechTalk.SpecFlow.Table
                     "tag1"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Deatils", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 15
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -150,20 +159,29 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
+#line 19
 testRunner.Given("open the browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 17
+#line 20
  testRunner.When("open the website page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 18
+#line 21
  testRunner.Then("click on login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 19
- testRunner.Then("enter the email id \'admin@microsoft.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table3.AddRow(new string[] {
+                            "username",
+                            "admin@microsoft.com"});
+                table3.AddRow(new string[] {
+                            "password",
+                            "Pass@word1"});
+#line 22
+ testRunner.When("Enter Credentials", ((string)(null)), table3, "When ");
 #line hidden
-#line 20
- testRunner.And("enter the password \'Pass@word1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 26
+ testRunner.Then("Successfull login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

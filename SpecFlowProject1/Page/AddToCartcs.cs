@@ -88,8 +88,8 @@ namespace SpecFlowProject1.Page
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
                 if (expectedProduct.Contains(element.FindElement(pname).Text)) ;
                 {
-                    driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-                    ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0,200)");
+                    driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                    ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0,300)");
                     Thread.Sleep(1000);
                     //Add to cart
                     element.FindElement(Add).Click();

@@ -7,8 +7,11 @@ Scenario: Login invalid Deatils
 Given open the browser
 	When open the website page
 	Then click on login page
-	Then enter the invalid email id 'admin@microsoft.com'
-	And enter the invalid password 'Pass@wor'
+	When Enter Credentials
+	| Key         | Value                  |
+	| username    | admin123@microsoft.com |
+	| password    | Pass@word            |
+	Then Invalid login
 
 
 	@tag1
@@ -16,6 +19,10 @@ Scenario: Login Deatils
 Given open the browser
 	When open the website page
 	Then click on login page
-	Then  enter the email id 'admin@microsoft.com'
-	And enter the password 'Pass@word1' 
+	When Enter Credentials
+	| Key         | Value                  |
+	| username    | admin@microsoft.com |
+	| password    | Pass@word1             |
+	Then Successfull login
+
 	

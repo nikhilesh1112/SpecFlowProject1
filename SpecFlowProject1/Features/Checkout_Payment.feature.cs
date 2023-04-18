@@ -111,16 +111,25 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  testRunner.Then("click on login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table1.AddRow(new string[] {
+                            "username",
+                            "admin@microsoft.com"});
+                table1.AddRow(new string[] {
+                            "password",
+                            "Pass@word1"});
 #line 11
- testRunner.Then("enter the email id \'admin@microsoft.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("Enter Credentials", ((string)(null)), table1, "When ");
 #line hidden
-#line 12
- testRunner.And("enter the password \'Pass@word1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.Then("Successfull login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 16
  testRunner.Then("searching items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
+#line 17
  testRunner.Then("AddToCart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
