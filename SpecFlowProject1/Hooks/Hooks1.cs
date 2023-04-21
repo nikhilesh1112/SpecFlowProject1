@@ -13,25 +13,22 @@ using System.Net;
 using TechTalk.SpecFlow;
 using WebDriverManager.DriverConfigs.Impl;
 
-namespace SpecFlowProject1.Hooks1
+namespace EShopOnline.Hooks
 {
     [Binding]
     public sealed class Hooks1 : ExtentReport
     {
 
-        //internal class Base
-        //{
         public IWebDriver driver;
 
 
+        /* Code for Cross Browser Testing */
 
         public void StartBrowser()
         {
             string browserName = ConfigurationManager.AppSettings["browser"];
             InitBrowser(browserName);
         }
-
-
 
         public void InitBrowser(string browserName)
         {
@@ -57,7 +54,8 @@ namespace SpecFlowProject1.Hooks1
                     break;
             }
         }
-        //}
+
+        /* From here Hooks Code Started */
 
         private IObjectContainer _container;
         public Hooks1(IObjectContainer container)
@@ -109,9 +107,16 @@ namespace SpecFlowProject1.Hooks1
         public void AfterScenario()
         {
             var driver = _container.Resolve<IWebDriver>();
-            if (driver != null)
+            try
             {
-                driver.Quit();
+                if (driver != null)
+                {
+                    driver.Quit();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
             }
         }
 
@@ -126,46 +131,17 @@ namespace SpecFlowProject1.Hooks1
             //When scenario passed
             if (scenarioContext.TestError == null)
             {
-                if (stepType == "Given")
+                if (stepType == "Given" || stepType == "When" || stepType == "Then" || stepType == "And")
                 {
                     _scenario.CreateNode<Given>(stepName);
                 }
-                else if (stepType == "When")
-                {
-                    _scenario.CreateNode<When>(stepName);
-                }
-                else if (stepType == "Then")
-                {
-                    _scenario.CreateNode<Then>(stepName);
-                }
-                else if (stepType == "And")
-                {
-                    _scenario.CreateNode<And>(stepName);
-                }
             }
-
             //When scenario fails
             if (scenarioContext.TestError != null)
             {
-
-                if (stepType == "Given")
+                if (stepType == "Given" || stepType == "When" || stepType == "Then" || stepType == "And")
                 {
                     _scenario.CreateNode<Given>(stepName).Fail(scenarioContext.TestError.Message,
-                        MediaEntityBuilder.CreateScreenCaptureFromPath(addScreenshot(driver, scenarioContext)).Build());
-                }
-                else if (stepType == "When")
-                {
-                    _scenario.CreateNode<When>(stepName).Fail(scenarioContext.TestError.Message,
-                        MediaEntityBuilder.CreateScreenCaptureFromPath(addScreenshot(driver, scenarioContext)).Build());
-                }
-                else if (stepType == "Then")
-                {
-                    _scenario.CreateNode<Then>(stepName).Fail(scenarioContext.TestError.Message,
-                        MediaEntityBuilder.CreateScreenCaptureFromPath(addScreenshot(driver, scenarioContext)).Build());
-                }
-                else if (stepType == "And")
-                {
-                    _scenario.CreateNode<And>(stepName).Fail(scenarioContext.TestError.Message,
                         MediaEntityBuilder.CreateScreenCaptureFromPath(addScreenshot(driver, scenarioContext)).Build());
                 }
             }
